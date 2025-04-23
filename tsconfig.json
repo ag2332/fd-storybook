@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "ESNext",
+      "lib": ["DOM", "ESNext"],
+      "jsx": "react-jsx",                       // 🔥 Enables JSX support for React 17+
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "strict": true,                           // Optional but recommended
+      "forceConsistentCasingInFileNames": true,
+      "skipLibCheck": true,
+      "resolveJsonModule": true,
+      "allowSyntheticDefaultImports": true,
+      "noEmit": true,                            // Prevents TS from outputting files (Storybook handles build)
+      "types": ["axe-playwright"],
+    },
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules"]
+  }
