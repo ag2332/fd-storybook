@@ -1,15 +1,8 @@
-import React, { ReactElement, useState } from "react";
+import { useState } from "react";
 import Accordion from "./accordion";
-import { bodyTextStyles, borderRadiusStyles } from "../../utilities/styles";
+import { borderRadiusStyles } from "../../utilities/styles";
 
 type TextSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
-
-interface ItemProps {
-  isOpen?: boolean;
-  onClick?: () => void;
-  index?: number;
-  totalItems?: number;
-}
 
 interface accordionGroupProps {
   backgroundColor: string;
@@ -20,7 +13,8 @@ interface accordionGroupProps {
   headingTextSize?: TextSize;
   bodyTextSize?: TextSize;
   numberOfItems?: number;
-  items: {headerLabel: React.ReactNode, bodyLabel: React.ReactNode}[];
+  iconVisible?: boolean;
+  items: {headerLabel: string, bodyLabel: string}[];
 }
 
 const AccordionGroup = ({
@@ -31,6 +25,7 @@ const AccordionGroup = ({
   bodyTextSize = "md",
   border = false,
   borderRadius = "md",
+  iconVisible = true,
   items = [],
 }: accordionGroupProps) => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
@@ -59,10 +54,12 @@ const AccordionGroup = ({
             color={color}
             isOpen={openAccordion === index}
             onClick={() => handleClick(index)}
-            headerLabel={item.headerLabel}
-            bodyLabel={item.bodyLabel}
+            headerLabel={item.headerLabel ?? ""}
+            bodyLabel={item.bodyLabel ?? ""}
             index={index}
             totalItems={items.length}
+            iconVisible={iconVisible}
+            icon={"⇓"}
           />
         );
       })}

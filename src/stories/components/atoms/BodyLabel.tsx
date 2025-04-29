@@ -11,6 +11,7 @@ const BodyLabel = ({
   textSize = "md",
   backgroundColor = "orange",
 }: BodyLabelProps) => {
+
   return (
     <div
       className={`${bodyTextStyles(textSize)} p-1.5`}

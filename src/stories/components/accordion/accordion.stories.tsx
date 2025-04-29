@@ -13,6 +13,7 @@ const meta = {
     headingTextSize: "xl",
     bodyTextSize: "md",
     numberOfItems: 5,
+    iconVisible: true,
   },
   argTypes: {
     backgroundColor: {
@@ -55,6 +56,11 @@ const meta = {
       control: { type: "select" },
       options: [1, 2, 3, 4, 5],
       defaultValue: 5,
+    },
+    iconVisible: {
+      name: "Icon Visible",
+      control: { type: "boolean" },
+      defaultValue: true,
     },
     items: {
       table: {
