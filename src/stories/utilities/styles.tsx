@@ -1,5 +1,28 @@
 type TextSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
+export function bodyTextStyles(bodyTextSize: string) {
+const bodytext = textStyles(bodyTextSize as TextSize) || "text-base";
+return bodytext;
+}
+
+export function headingTextStyles(headingTextSize: string) {
+const headingtext = textStyles(headingTextSize as TextSize) || "text-xl";
+return headingtext;
+}
+
+export function textStyles(textSize: string) {
+const textStylesList = {
+    xs: "text-xs",
+    sm: "text-sm",
+    md: "text-base",
+    lg: "text-lg",
+    xl: "text-xl",
+    "2xl": "text-2xl",
+    "3xl": "text-3xl",
+  }[textSize];
+    return textStylesList;
+}
+
 export function borderRadiusStyles(radius: string) {
   const borderRadiusStylesList = {
     none: "rounded-none",
@@ -47,27 +70,4 @@ const widthStylesList = {
     600: "w-[600px]",
   }[width];
     return widthStylesList;
-}
-
-export function textStyles(textSize: string) {
-const textStylesList = {
-    xs: "text-xs",
-    sm: "text-sm",
-    md: "text-base",
-    lg: "text-lg",
-    xl: "text-xl",
-    "2xl": "text-2xl",
-    "3xl": "text-3xl",
-  }[textSize];
-    return textStylesList;
-}
-
-export function bodyTextStyles(bodyTextSize: string) {
-const bodytext = textStyles(bodyTextSize as TextSize) || "text-base";
-return bodytext;
-}
-
-export function headingTextStyles(headingTextSize: string) {
-const headingtext = textStyles(headingTextSize as TextSize) || "text-xl";
-    return headingtext;
 }

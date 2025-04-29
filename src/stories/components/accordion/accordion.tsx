@@ -1,50 +1,76 @@
-import HeaderLabel from "../atoms/HeaderLabel";
 import BodyLabel from "../atoms/BodyLabel";
+import HeaderLabel from "../atoms/HeaderLabel";
 import Item from "../atoms/item";
-import { borderRadiusStyles, positionStyles, widthStyles } from "../../utilities/styles";
 
 type TextSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
 interface accordionProps {
-  className?: string;
-  value?: string;
-  title: string;
-  ariaLabel: string;
-  label: string;
-  borderRadius?: string;
-  position?: string;
-  width?: string;
+  backgroundColor: string;
+  secondaryBackgroundColor: string;
+  color?: string;
+  headerLabel?: React.ReactNode;
+  bodyLabel?: React.ReactNode;
   headingTextSize?: TextSize;
   bodyTextSize?: TextSize;
-  backgroundColor: any;
-  color: any;
-  border: boolean;
-  disabled: boolean;
+  isOpen?: boolean;
+  onClick?: () => void;
+  index?: number;
+  totalItems?: number;
 }
 
-
-const accordion = ({
-  className = "",
-  value = "",
-  title,
-  ariaLabel = "placeholder",
-  label,
-  borderRadius = "md",
-  position = "top",
-  width = "300",
+const Accordion = ({
+  backgroundColor,
+  secondaryBackgroundColor,
   headingTextSize = "xl",
   bodyTextSize = "md",
-  backgroundColor = "red",
-  color = "black",
-  border = false,
-  disabled = false,
+  headerLabel,
+  bodyLabel,
+  isOpen,
+  onClick,
+  index,
+  totalItems,
 }: accordionProps) => {
   return (
-    <div aria-Label={ariaLabel} className={`${borderRadiusStyles(borderRadius)} ${positionStyles(position)} ${widthStyles(width)}`}>
-      <div data-value="first">
-        test
+    <div>
+      headerLabelProps=
+      {{
+        textSize: headingTextSize,
+        backgroundColor: backgroundColor,
+        text: headerLabel,
+      }}
+      bodyLabelProps=
+      {{
+        textSize: bodyTextSize,
+        backgroundColor: secondaryBackgroundColor,
+        text: bodyLabel,
+      }}
+      isOpen={isOpen},
+      onClick={onClick},
+      index={index},
+      totalItems={totalItems}
+
+      <div
+      className={`${
+        index !== (totalItems ?? 0) - 1
+          ? "border-b border-solid border-black"
+          : ""
+      }`}
+    >
+      <button onClick={onClick} className={`w-full text-left font-bold`}>
+        <HeaderLabel {...headerLabelProps}/>
+      </button>
+      <div
+        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+          isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+        style={{
+          maxHeight: isOpen ? "1000px" : "0",
+        }}
+      >
+        <BodyLabel {...bodyLabelProps} />
       </div>
+    </div>
     </div>
   );
 };
-export default accordion;
+export default Accordion;

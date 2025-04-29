@@ -1,15 +1,27 @@
+import { bodyTextStyles } from "../../utilities/styles";
+
 interface BodyLabelProps {
-    children: string;
-    className: string;
+  text: string;
+  textSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+  backgroundColor?: string;
 }
 
 const BodyLabel = ({
-    children = "",
-    className = "",
+  text = "",
+  textSize = "md",
+  backgroundColor = "orange",
 }: BodyLabelProps) => {
-
-  return(
-    <div className={`${className}`}>{children}</div>
+  return (
+    <div
+      className={`${bodyTextStyles(textSize)} p-1.5`}
+      style={{
+        ...(backgroundColor && {
+          backgroundColor: backgroundColor,
+        }),
+      }}
+    >
+      {text}
+    </div>
   );
 };
 

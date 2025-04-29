@@ -1,15 +1,28 @@
+import { headingTextStyles } from "../../utilities/styles";
+
 interface HeaderLabelProps {
-    children: string;
-    className: string;
+  text: string;
+  textSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+  backgroundColor?: string;
 }
 
 const HeaderLabel = ({
-    children = "",
-    className = "",
+  text = "",
+  textSize = "xl",
+  backgroundColor = "red",
 }: HeaderLabelProps) => {
 
-  return(
-    <div className={`${className}`}>{children}</div>
+  return (
+    <div
+      className={`${headingTextStyles(textSize)} font-bold p-1.5`}
+      style={{
+        ...(backgroundColor && {
+          backgroundColor,
+        }),
+      }}
+    >
+      {text }
+    </div>
   );
 };
 
