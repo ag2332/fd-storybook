@@ -17,6 +17,7 @@ interface accordionProps {
   totalItems?: number;
   icon: string;
   iconVisible?: boolean;
+  logoUrl?: string;
 }
 
 const Accordion = ({
@@ -32,6 +33,7 @@ const Accordion = ({
   totalItems,
   icon = "",
   iconVisible = true,
+  logoUrl,
 }: accordionProps) => {
   return (
     <div
@@ -49,6 +51,7 @@ const Accordion = ({
           text={headerLabel}
           icon={icon}
           iconVisible={iconVisible}
+          logoUrl={logoUrl}
         />
       </button>
       <div

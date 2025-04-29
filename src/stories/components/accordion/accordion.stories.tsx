@@ -14,6 +14,7 @@ const meta = {
     bodyTextSize: "md",
     numberOfItems: 5,
     iconVisible: true,
+    logoUrl: "https://www.svgrepo.com/show/80156/down-arrow.svg",
   },
   argTypes: {
     backgroundColor: {
@@ -61,6 +62,11 @@ const meta = {
       name: "Icon Visible",
       control: { type: "boolean" },
       defaultValue: true,
+    },
+    logoUrl: {
+      name: "Logo Image URL",
+      control: { type: "text" },
+      defaultValue: "https://www.svgrepo.com/show/80156/down-arrow.svg",
     },
     items: {
       table: {

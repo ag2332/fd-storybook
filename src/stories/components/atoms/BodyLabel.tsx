@@ -14,7 +14,7 @@ const BodyLabel = ({
 
   return (
     <div
-      className={`${bodyTextStyles(textSize)} p-1.5`}
+      className={`${bodyTextStyles(textSize)} p-1.5 px-4`}
       style={{
         ...(backgroundColor && {
           backgroundColor: backgroundColor,

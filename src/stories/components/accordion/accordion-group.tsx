@@ -14,7 +14,8 @@ interface accordionGroupProps {
   bodyTextSize?: TextSize;
   numberOfItems?: number;
   iconVisible?: boolean;
-  items: {headerLabel: string, bodyLabel: string}[];
+  items: { headerLabel: string; bodyLabel: string }[];
+  logoUrl?: string;
 }
 
 const AccordionGroup = ({
@@ -27,6 +28,7 @@ const AccordionGroup = ({
   borderRadius = "md",
   iconVisible = true,
   items = [],
+  logoUrl = "https://www.svgrepo.com/show/80156/down-arrow.svg",
 }: accordionGroupProps) => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
@@ -36,11 +38,15 @@ const AccordionGroup = ({
 
   return (
     <div
-      className={`${borderRadiusStyles(borderRadius)} overflow-hidden ${border ? "border-2 border-solid border-black" : ""} w-[200px]`}
+      className={`${borderRadiusStyles(borderRadius)} overflow-hidden ${
+        border ? "border-2 border-solid border-black" : ""
+      } w-[200px]`}
       style={{
         ...(color && { color }),
         ...(backgroundColor && { backgroundColor }),
-        ...(secondaryBackgroundColor && { backgroundColor: secondaryBackgroundColor }),
+        ...(secondaryBackgroundColor && {
+          backgroundColor: secondaryBackgroundColor,
+        }),
       }}
     >
       {items.map((item, index) => {
@@ -60,6 +66,7 @@ const AccordionGroup = ({
             totalItems={items.length}
             iconVisible={iconVisible}
             icon={"⇓"}
+            logoUrl={logoUrl}
           />
         );
       })}
