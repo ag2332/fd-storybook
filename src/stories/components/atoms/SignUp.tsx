@@ -4,7 +4,7 @@ interface SignUpProps {
   handleCloseModal?: () => void;
 }
 
-const SignUp = ({ 
+const SignUp = ({
     className = "",
     onClick,
     handleCloseModal }: SignUpProps) => {
