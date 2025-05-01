@@ -5,8 +5,8 @@ import ModalContainer from "./modal-container";
 interface ModalProps {
   width?: string;
   borderRadius?: string;
-  overlayColor: any;
-  backgroundColor: any;
+  overlayColor: string;
+  backgroundColor: string;
   alwaysShow?: boolean;
 }
 

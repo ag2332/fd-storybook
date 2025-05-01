@@ -1,22 +1,50 @@
 import { useState, useRef, useEffect } from "react";
 import CarouselItem from "./carousel-item";
 
-interface CarouselProps {}
+interface CarouselProps {
+  borderRadius?: string;
+  backgroundColor?: string;
+  color?: string;
+  width?: string;
+  border?: boolean;
+  alwaysShowButtons?: boolean;
+  alwaysShowSelector?: boolean;
+  children: string
+}
 
-const Carousel = ({}: CarouselProps) => {
+const Carousel = ({
+  borderRadius = "md",
+  backgroundColor = "black",
+  color = "white",
+  width = "300",
+  border = false,
+  alwaysShowButtons = true,
+  alwaysShowSelector = true,
+  children = "Carousel Content",
+}: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const CarouselItems = Array.from({ length: 10 }, (_, i) => (
-    <CarouselItem key={i} />
+    <CarouselItem
+    key={i}
+    children={children}
+    borderRadius={borderRadius}
+    backgroundColor={backgroundColor}
+    color={color}
+    width={width}
+    border={border}
+    />
   ));
 
   const SelectorItems = Array.from({ length: CarouselItems.length }, (_, i) => (
     <button
       key={i}
-      className={`w-2 h-2 rounded-full ${
+      onClick={() => selectCount(i)}
+      className={`cursor-pointer w-2.5 h-2.5 rounded-full hover:bg-gray-400 ${
         i === currentIndex ? "bg-black" : "bg-gray-300"
-      }`}
+      }
+      ${alwaysShowSelector ? "opacity-100" : "opacity-0"}`}
     ></button>
   ));
 
@@ -31,6 +59,10 @@ const Carousel = ({}: CarouselProps) => {
     );
   };
 
+  const selectCount = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   useEffect(() => {
     const current = itemsRef.current[currentIndex];
     if (current) {
@@ -43,9 +75,9 @@ const Carousel = ({}: CarouselProps) => {
   }, [currentIndex]);
 
   return (
-    <>
-      <div className="overflow-auto">
-        <div className="flex gap-[2rem] px-4 py-10">
+    <div className="relative w-full max-w-[2200px] mx-auto">
+      <div className="overflow-x-hidden py-20">
+        <div className="flex gap-[3rem]">
           {CarouselItems.map((item, index) => (
             <div
               key={index}
@@ -61,24 +93,26 @@ const Carousel = ({}: CarouselProps) => {
           ))}
         </div>
       </div>
-        <div className="flex my-12 justify-center gap-[1rem]">
-            {SelectorItems}
+      <div className="w-full top-full mt-6 flex flex-col items-center gap-4 z-10">
+        <div className="flex justify-center gap-[1rem]">
+          {SelectorItems}
         </div>
-      <div className=" w-full flex gap-[1rem] mt-5 justify-center">
-        <button
-          onClick={countDown}
-          className="cursor-pointer top-1/2 left-4 transform -translate-y-1/2 flex items-center justify-center w-12 h-12 border-2 border-black rounded-full text-black hover:bg-gray-100"
-        >
-          &lt;
-        </button>
-        <button
-          onClick={countUp}
-          className="cursor-pointer top-1/2 right-4 transform -translate-y-1/2 flex items-center justify-center w-12 h-12 border-2 border-black rounded-full text-black hover:bg-gray-100"
-        >
-          &gt;
-        </button>
+        <div className={`${alwaysShowButtons ? "opacity-100" : "opacity-0"} flex gap-[1rem] justify-center items-center w-full`}>
+          <button
+            onClick={countDown}
+            className="cursor-pointer flex items-center justify-center w-[10vw] h-[10vw] max-w-12 max-h-12 min-w-8 min-h-8 border-2 border-black rounded-full text-black hover:bg-gray-100"
+          >
+            &lt;
+          </button>
+          <button
+            onClick={countUp}
+            className="cursor-pointer flex items-center justify-center w-[10vw] h-[10vw] max-w-12 max-h-12 min-w-8 min-h-8 border-2 border-black rounded-full text-black hover:bg-gray-100"
+          >
+            &gt;
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

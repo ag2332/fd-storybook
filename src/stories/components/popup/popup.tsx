@@ -12,8 +12,8 @@ interface PopUpProps {
   width?: string;
   headingTextSize?: TextSize;
   bodyTextSize?: TextSize;
-  backgroundColor: any;
-  color: any;
+  backgroundColor: string;
+  color: string;
   border: boolean;
   alwaysShow: boolean;
 };

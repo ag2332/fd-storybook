@@ -7,7 +7,7 @@ interface ModalContainerProps {
   onClick?: () => void;
   width?: string;
   borderRadius?: string;
-  backgroundColor?: any;
+  backgroundColor?: string;
 }
 
 const ModalContainer = ({

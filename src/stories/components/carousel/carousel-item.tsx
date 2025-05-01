@@ -1,11 +1,36 @@
-interface CarouselItemProps {}
+import { borderRadiusStyles, widthStyles } from "../../utilities/styles";
 
-const CarouselItem = ({}: CarouselItemProps) => {
+interface CarouselItemProps {
+  children: string;
+  borderRadius?: string;
+  backgroundColor?: string;
+  color?: string;
+  width?: string;
+  border?: boolean;
+}
+
+const CarouselItem = ({
+  children = "Carousel Content",
+  borderRadius = "md",
+  backgroundColor = "black",
+  color = "white",
+  width = "300",
+  border = false,
+}: CarouselItemProps) => {
   return (
     <div>
       <label className="inline-block">
-        <div className="flex items-center justify-center w-[16vw] h-[43.5vh] bg-black border-[2.4px] border-black rounded-[0.8rem] [perspective:62.5rem]">
-          <h1 className="text-white">Carousel Item</h1>
+        <div
+          style={{ ...(backgroundColor && { backgroundColor }) }}
+          className={`${borderRadiusStyles(
+            borderRadius
+          )} flex items-center justify-center ${widthStyles(
+            width
+          )} h-[43.5vh] ${
+            border ? "border-2 border-solid border-black" : ""
+          }  [perspective:62.5rem]`}
+        >
+          <h1 style={{ ...(color && { color }) }}>{children}</h1>
         </div>
       </label>
     </div>
