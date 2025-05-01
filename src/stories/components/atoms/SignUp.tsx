@@ -4,7 +4,10 @@ interface SignUpProps {
   handleCloseModal?: () => void;
 }
 
-const SignUp = ({ className = "", onClick, handleCloseModal }: SignUpProps) => {
+const SignUp = ({ 
+    className = "",
+    onClick,
+    handleCloseModal }: SignUpProps) => {
   return (
     <div>
       <div className="w-full flex justify-end pt-1 pr-3">
