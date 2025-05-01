@@ -1,61 +1,61 @@
-import ReactDom from "react-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../button/button";
 import ModalContainer from "./modal-container";
 
 interface ModalProps {
-  className?: string;
-  onClick?: () => void;
-  handleClosemodal?: boolean;
+  width?: string;
+  borderRadius?: string;
+  overlayColor: any;
+  backgroundColor: any;
+  alwaysShow?: boolean;
 }
 
-const Modal = ({ className = "", onClick }: ModalProps) => {
+const Modal = ({
+  width = "300",
+  borderRadius = "md",
+  overlayColor = "rgba(0, 0, 0, 0.5)",
+  backgroundColor = "white",
+  alwaysShow = false,
+}: ModalProps) => {
   const [showModal, setShowModal] = useState(false);
-  const [portalElement, setPortalElement] = useState<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const element = document.getElementById("portal");
-    setPortalElement(element);
-  }, []);
+  const handleCloseModal = () => setShowModal(false);
+  const handleOpenModal = () => setShowModal(true);
 
-  if (!portalElement) {
-    return null;
-  }
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  console.log(showModal);
-
-  return(
+  return (
     <div>
+      {!alwaysShow && (
       <Button
         ariaLabel={""}
         onClick={handleOpenModal}
         aria-label={""}
         className="absolute inset-0 opacity-80 z-[99] border-none w-full shadow-none hover:translate-x-0 hover:translate-y-0 hover:shadow-none transition-all "
       />
-      {showModal &&
-        ReactDom.createPortal(
-          <>
+      )}
+      {(showModal || alwaysShow) && (
+        <>
+          <div
+            className="fixed top-0 left-0 w-screen h-screen z-50"
+            onClick={handleCloseModal}
+            style={{
+              backgroundColor: `${overlayColor}`,
+            }}
+          >
             <div
-              className="fixed top-0 left-0 w-screen h-screen bg-black/50 z-50"
-              onClick={handleCloseModal}
-            ></div>
-            <div
-              className="fixed top-0 left-0 h-screen w-screen flex flex-col items-center justify-center z-[100] p-4"
+              className={`fixed top-0 left-0 h-screen w-screen flex flex-col items-center justify-center z-[100] p-4 ${alwaysShow ? handleOpenModal : handleCloseModal}`}
               onClick={(e) => e.stopPropagation()}
+
             >
-              <ModalContainer />,
+              <ModalContainer
+                handleCloseModal={handleCloseModal}
+                width={width}
+                borderRadius={borderRadius}
+                backgroundColor={backgroundColor}
+              />
             </div>
-          </>,
-          portalElement
-        )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -1,11 +1,13 @@
 import type { PropsWithChildren } from "react";
 import { variants, type ButtonVariants } from "./button-variants";
 
-type ButtonProps = PropsWithChildren<ButtonVariants & {
-  ariaLabel: string;
-  onClick?: () => void;
-  className?: string;
-}>;
+type ButtonProps = PropsWithChildren<
+  ButtonVariants & {
+    ariaLabel: string;
+    onClick?: () => void;
+    className?: string;
+  }
+>;
 
 const Button = ({
   children = "Button",
@@ -15,14 +17,14 @@ const Button = ({
   className,
 }: ButtonProps) => {
   return (
-    <div aria-label={ariaLabel} className={variants({ variant })}>
       <button
         type="button"
-        className="text-center cursor-pointer"
+        className={`${variants({ variant })} cursor-pointer flex justify-center w-full`}
+        onClick={onClick}
+        aria-label={ariaLabel}
       >
         {children}
-        </button>
-    </div>
+      </button>
   );
 };
 
