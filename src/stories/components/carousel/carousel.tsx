@@ -10,17 +10,19 @@ interface CarouselProps {
   alwaysShowButtons?: boolean;
   alwaysShowSelector?: boolean;
   children: string
+  removeSelectorBG?: boolean;
 }
 
 const Carousel = ({
+  children = "Carousel Content",
   borderRadius = "md",
-  backgroundColor = "black",
+  backgroundColor = "red",
   color = "white",
   width = "300",
   border = false,
   alwaysShowButtons = true,
   alwaysShowSelector = true,
-  children = "Carousel Content",
+  removeSelectorBG = false,
 }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -75,7 +77,7 @@ const Carousel = ({
   }, [currentIndex]);
 
   return (
-    <div className="relative w-full max-w-[2200px] mx-auto">
+    <div className="relative w-full">
       <div className="overflow-x-hidden py-20">
         <div className="flex gap-[3rem]">
           {CarouselItems.map((item, index) => (
@@ -93,20 +95,24 @@ const Carousel = ({
           ))}
         </div>
       </div>
-      <div className="w-full top-full mt-6 flex flex-col items-center gap-4 z-10">
-        <div className="flex justify-center gap-[1rem]">
+      <div className="w-full top-full flex flex-col items-center gap-4 z-10">
+        <div
+        style={{
+            ...(!removeSelectorBG && backgroundColor && { backgroundColor }),
+        }}
+        className="flex justify-center gap-[1rem] p-3 rounded-lg">
           {SelectorItems}
         </div>
         <div className={`${alwaysShowButtons ? "opacity-100" : "opacity-0"} flex gap-[1rem] justify-center items-center w-full`}>
           <button
             onClick={countDown}
-            className="cursor-pointer flex items-center justify-center w-[10vw] h-[10vw] max-w-12 max-h-12 min-w-8 min-h-8 border-2 border-black rounded-full text-black hover:bg-gray-100"
+            className="cursor-pointer flex items-center justify-center w-12 h-12 border-2 border-black rounded-full text-black hover:bg-gray-100"
           >
             &lt;
           </button>
           <button
             onClick={countUp}
-            className="cursor-pointer flex items-center justify-center w-[10vw] h-[10vw] max-w-12 max-h-12 min-w-8 min-h-8 border-2 border-black rounded-full text-black hover:bg-gray-100"
+            className="cursor-pointer flex items-center justify-center w-12 h-12 border-2 border-black rounded-full text-black hover:bg-gray-100"
           >
             &gt;
           </button>

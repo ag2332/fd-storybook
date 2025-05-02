@@ -10,10 +10,11 @@ const meta = {
   args: {
     children: "Carousel Content",
     borderRadius: "md",
-    backgroundColor: "black",
+    backgroundColor: "red",
     color: "white",
     width: "300",
     border: false,
+    removeSelectorBG: false,
     alwaysShowSelector: true,
     alwaysShowButtons: true,
   },
@@ -49,6 +50,11 @@ const meta = {
       options: ["100", "200", "300", "400", "500", "600"],
       defaultValue: "300",
     },
+    removeSelectorBG: {
+      name: "Remove Selector Background",
+      description: "If true, the selector background will be removed",
+      control: { type: "boolean" },
+    },
     alwaysShowSelector: {
       name: "Always Show Selector",
       description: "If true, the carousel selector will always be shown",
@@ -69,7 +75,7 @@ export const Primary: Story = {
   args: {
     children: "Carousel Content",
     borderRadius: "md",
-    backgroundColor: "black",
+    backgroundColor: "red",
     color: "white",
     width: "300",
     border: false,

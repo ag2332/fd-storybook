@@ -12,7 +12,7 @@ interface CarouselItemProps {
 const CarouselItem = ({
   children = "Carousel Content",
   borderRadius = "md",
-  backgroundColor = "black",
+  backgroundColor = "red",
   color = "white",
   width = "300",
   border = false,
