@@ -28,7 +28,6 @@ const Modal = ({
       <Button
         ariaLabel={""}
         onClick={handleOpenModal}
-        aria-label={""}
         className="absolute inset-0 opacity-80 z-[99] border-none w-full shadow-none hover:translate-x-0 hover:translate-y-0 hover:shadow-none transition-all "
       />
       )}
