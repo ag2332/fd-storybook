@@ -8,6 +8,7 @@ interface ModalProps {
   overlayColor: string;
   backgroundColor: string;
   alwaysShow?: boolean;
+  children?: string;
 }
 
 const Modal = ({
@@ -16,6 +17,7 @@ const Modal = ({
   overlayColor = "rgba(0, 0, 0, 0.5)",
   backgroundColor = "white",
   alwaysShow = false,
+  children = "",
 }: ModalProps) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -25,11 +27,11 @@ const Modal = ({
   return (
     <div>
       {!alwaysShow && (
-      <Button
-        ariaLabel={""}
-        onClick={handleOpenModal}
-        className="absolute inset-0 opacity-80 z-[99] border-none w-full shadow-none hover:translate-x-0 hover:translate-y-0 hover:shadow-none transition-all "
-      />
+        <Button
+          ariaLabel={""}
+          onClick={handleOpenModal}
+          className="absolute inset-0 opacity-80 z-[99] border-none w-full shadow-none hover:translate-x-0 hover:translate-y-0 hover:shadow-none transition-all "
+        />
       )}
       {(showModal || alwaysShow) && (
         <>
@@ -41,15 +43,17 @@ const Modal = ({
             }}
           >
             <div
-              className={`fixed top-0 left-0 h-screen w-screen flex flex-col items-center justify-center z-[100] p-4 ${alwaysShow ? handleOpenModal : handleCloseModal}`}
+              className={`fixed top-0 left-0 h-screen w-screen flex flex-col items-center justify-center z-[100] p-4 ${
+                alwaysShow ? handleOpenModal : handleCloseModal
+              }`}
               onClick={(e) => e.stopPropagation()}
-
             >
               <ModalContainer
                 handleCloseModal={handleCloseModal}
                 width={width}
                 borderRadius={borderRadius}
                 backgroundColor={backgroundColor}
+                children={children}
               />
             </div>
           </div>

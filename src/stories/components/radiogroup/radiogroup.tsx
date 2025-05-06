@@ -26,7 +26,7 @@ const RadioGroup = ({
   ariaLabel = "placeholder",
   className = "",
 }: RadioGroupProps) => {
-  const [selected, setSelected] = useState<number>(0);
+  const [selected, setSelected] = useState<number | null>(null);
 
   const handleClick = (index: number) => {
     setSelected((prev) => (prev === index ? 0 : index));

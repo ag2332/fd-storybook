@@ -13,8 +13,15 @@ const meta = {
     overlayColor: "rgba(0, 0, 0, 0.5)",
     backgroundColor: "white",
     alwaysShow: false,
+    children: "This is a modal",
   },
   argTypes: {
+    children: {
+      name: "Children",
+      description: "Controls the content of the modal",
+      control: { type: "text" },
+      defaultValue: "This is a modal",
+    },
     width: {
       name: "Width",
       description: "Controls the width of the popup",
@@ -55,5 +62,6 @@ export const Primary: Story = {
     overlayColor: "rgba(0, 0, 0, 0.5)",
     backgroundColor: "white",
     alwaysShow: false,
+    children: "Welcome to your new dashboard! This space is designed to give you control and visibility over tasks, deadlines, and team collaboration. Customize your experience by adjusting settings, rearranging components, and adding integrations that suit your workflow. The platform is built for speed and reliability, whether you're managing small projects or large-scale operations. Dive in and explore the tools designed to streamline your process and keep everything running smoothly.",
   },
 };
