@@ -16,6 +16,7 @@ interface RadioProps {
   bodyTextSize: TextSize;
   ariaLabel: string;
   id: string;
+  backgroundToggle?: boolean;
 }
 
 const Radio = ({
@@ -23,19 +24,28 @@ const Radio = ({
   bodyLabel = "default body",
   isSelected,
   borderRadius = "md",
-  backgroundColor = "red",
+  backgroundColor = "transparent",
   headingTextSize = "xl",
   bodyTextSize = "md",
   ariaLabel = "placeholder",
   id = "radio",
 }: RadioProps) => {
+
+  const hasNoBackground = backgroundColor === "transparent" || backgroundColor === "";
+
   return (
     <span
       aria-label={ariaLabel}
       style={{ ...(backgroundColor && { backgroundColor }) }}
-      className={`${borderRadiusStyles(borderRadius)} ${
-        isSelected ? "text-white" : "text-black"
-      } flex justify-between items-center cursor-pointer my-5 p-6 shadow-lg w-80 z-50 hover:border-black hover:border-2 transition-all duration-200 hover:scale-105 hover:shadow-2xl`}
+      className={`${borderRadiusStyles(borderRadius)}
+      flex justify-between items-center cursor-pointer my-5 w-80 z-50 transition-all duration-200 hover:scale-105
+      ${isSelected && !hasNoBackground ? "text-white" : "text-black"}
+      ${
+        hasNoBackground
+          ? ""
+          : "p-6 shadow-lg hover:border-black hover:border-2 hover:shadow-2xl"
+      }
+      `}
     >
       <label htmlFor={id} className="flex flex-col">
         <h1 className={`${headingTextStyles(headingTextSize)}`}>
@@ -43,8 +53,19 @@ const Radio = ({
         </h1>
         <p className={`${bodyTextStyles(bodyTextSize)}`}>{bodyLabel}</p>
       </label>
-      {isSelected && (
-        <span className="w-6 h-6 rounded-full bg-white flex items-center justify-center ml-4">
+      <input
+        type="radio"
+        id={id}
+        checked={isSelected}
+        onChange={() => {}}
+        className="hidden"
+      />
+      <span
+        className={`w-6 h-6 rounded-full border-2 border-black flex items-center justify-center ${
+          isSelected ? "bg-white" : "bg-transparent"
+        }`}
+      >
+        {isSelected && (
           <svg
             className="w-3 h-3 text-black"
             viewBox="0 0 24 24"
@@ -56,9 +77,8 @@ const Radio = ({
           >
             <polyline points="20 6 9 17 4 12" />
           </svg>
-        </span>
-      )}
-      <input type="radio" onChange={() => {}} id={id} className="hidden" />
+        )}
+      </span>
     </span>
   );
 };

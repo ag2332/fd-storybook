@@ -11,12 +11,11 @@ const meta = {
     headerLabel: "default heading",
     bodyLabel: "default body",
     borderRadius: "md",
-    backgroundColor: "red",
+    backgroundColor: "transparent",
     headingTextSize: "xl",
     bodyTextSize: "md",
     direction: true,
     ariaLabel: "Radio Group",
-    className: "",
   },
   argTypes: {
     headerLabel: {
@@ -66,12 +65,6 @@ const meta = {
       control: { type: "text" },
       defaultValue: "Radio Group",
     },
-    className: {
-      name: "Class Name",
-      description: "Enter your CSS class to edit the Radio Group",
-      control: { type: "object" },
-      defaultValue: "",
-    },
   },
 } satisfies Meta<typeof RadioGroup>;
 
@@ -83,11 +76,10 @@ export const Primary: Story = {
     headerLabel: "default heading",
     bodyLabel: "default body",
     borderRadius: "md",
-    backgroundColor: "red",
+    backgroundColor: "transparent",
     headingTextSize: "xl",
     bodyTextSize: "md",
     direction: true,
     ariaLabel: "Radio Group",
-    className: "cursor-pointer my-5 p-4 shadow-lg w-72 z-50 transition-colors duration-200",
   },
 };
