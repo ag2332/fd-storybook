@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Item from "../atoms/item";
+import Radio from "./radio";
 
 type TextSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
@@ -12,7 +12,6 @@ interface RadioGroupProps {
   bodyTextSize?: TextSize;
   direction: boolean;
   ariaLabel: string;
-  className?: string;
 }
 
 const RadioGroup = ({
@@ -24,7 +23,6 @@ const RadioGroup = ({
   bodyTextSize = "md",
   direction = true,
   ariaLabel = "placeholder",
-  className = "",
 }: RadioGroupProps) => {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -36,11 +34,11 @@ const RadioGroup = ({
     <div
       className={`flex ${
         direction ? "flex-row" : "flex-col"
-      } justify-center space-x-4`}
+      } justify-center space-x-6`}
     >
       {Array.from({ length: 3 }, (_, index) => (
         <div key={index} onClick={() => handleClick(index)}>
-          <Item
+          <Radio
             isSelected={selected === index}
             borderRadius={borderRadius}
             backgroundColor={backgroundColor}
@@ -49,7 +47,7 @@ const RadioGroup = ({
             headingTextSize={headingTextSize}
             bodyTextSize={bodyTextSize}
             ariaLabel={ariaLabel}
-            className={className}
+            id={"radio" + index}
           />
         </div>
       ))}
