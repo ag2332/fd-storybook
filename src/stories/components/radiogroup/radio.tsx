@@ -1,8 +1,4 @@
-import {
-  borderRadiusStyles,
-  headingTextStyles,
-  bodyTextStyles,
-} from "../../utilities/styles";
+import InputLayout from "../atoms/InputLayout";
 
 type TextSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
@@ -17,6 +13,8 @@ interface RadioProps {
   ariaLabel: string;
   id: string;
   backgroundToggle?: boolean;
+  layoutToggle?: boolean;
+  accentColor: string;
 }
 
 const Radio = ({
@@ -25,61 +23,28 @@ const Radio = ({
   isSelected,
   borderRadius = "md",
   backgroundColor = "transparent",
+  accentColor = "white",
   headingTextSize = "xl",
   bodyTextSize = "md",
   ariaLabel = "placeholder",
   id = "radio",
+  layoutToggle,
 }: RadioProps) => {
 
-  const hasNoBackground = backgroundColor === "transparent" || backgroundColor === "";
-
   return (
-    <span
-      aria-label={ariaLabel}
-      style={{ ...(backgroundColor && { backgroundColor }) }}
-      className={`${borderRadiusStyles(borderRadius)}
-      flex justify-between items-center cursor-pointer my-5 w-80 z-50 transition-all duration-200 hover:scale-105
-      ${isSelected && !hasNoBackground ? "text-white" : "text-black"}
-      ${
-        hasNoBackground
-          ? ""
-          : "p-6 shadow-lg hover:border-black hover:border-2 hover:shadow-2xl"
-      }
-      `}
-    >
-      <label htmlFor={id} className="flex flex-col">
-        <h1 className={`${headingTextStyles(headingTextSize)}`}>
-          {headerLabel}
-        </h1>
-        <p className={`${bodyTextStyles(bodyTextSize)}`}>{bodyLabel}</p>
-      </label>
-      <input
-        type="radio"
-        id={id}
-        checked={isSelected}
-        onChange={() => {}}
-        className="hidden"
-      />
-      <span
-        className={`w-6 h-6 rounded-full border-2 border-black flex items-center justify-center ${
-          isSelected ? "bg-white" : "bg-transparent"
-        }`}
-      >
-        {isSelected && (
-          <svg
-            className="w-3 h-3 text-black"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        )}
-      </span>
-    </span>
+    <InputLayout
+    headingTextSize={headingTextSize}
+    bodyTextSize={bodyTextSize}
+    headerLabel={headerLabel}
+    bodyLabel={bodyLabel}
+    ariaLabel={ariaLabel}
+    accentColor={accentColor}
+    isSelected={isSelected}
+    id={id}
+    borderRadius={borderRadius}
+    backgroundColor={backgroundColor}
+    layoutToggle={layoutToggle}
+    />
   );
 };
 

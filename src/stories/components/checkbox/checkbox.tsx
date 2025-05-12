@@ -1,40 +1,49 @@
-import { bodyTextStyles, headingTextStyles } from "../../utilities/styles";
+import { useState } from "react";
+import InputLayout from "../atoms/InputLayout";
 
 type TextSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
 interface CheckBoxProps {
-    accentColor?: string;
-    headingTextSize?: TextSize;
-    bodyTextSize?: TextSize;
-    headerLabel?: string;
-    bodyLabel?: string;
+  accentColor?: string;
+  headingTextSize?: TextSize;
+  bodyTextSize?: TextSize;
+  headerLabel?: string;
+  bodyLabel?: string;
+  ariaLabel: string;
+  id: string;
+  backgroundColor: string
 }
 
 const CheckBox = ({
-    accentColor = 'black',
-    headingTextSize = 'xl',
-    bodyTextSize = 'md',
-    headerLabel = 'default heading',
-    bodyLabel = 'default body',
+  accentColor = "white",
+  headingTextSize = "xl",
+  bodyTextSize = "md",
+  headerLabel = "default heading",
+  bodyLabel = "default body",
+  ariaLabel,
+  id,
+  backgroundColor = "transparent",
 }: CheckBoxProps) => {
+
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleToggle = () => {
+    setIsSelected((prev) => !prev);
+  }
+
   return (
-    <div className="flex items-center">
-      <input
-      style = {{...(accentColor && { accentColor })}}
-      type="checkbox"
-      className="cursor-pointer w-6 h-6 accent-black transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
-      />
-      <div className="grid mx-3">
-        <label
-          className={`${headingTextStyles(headingTextSize)} text-md font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70`}
-        >
-          {headerLabel}
-        </label>
-        <p className={`${bodyTextStyles(bodyTextSize)}text-sm text-muted-foreground`}>
-          {bodyLabel}
-        </p>
-      </div>
-    </div>
+    <InputLayout
+      headingTextSize={headingTextSize}
+      bodyTextSize={bodyTextSize}
+      headerLabel={headerLabel}
+      bodyLabel={bodyLabel}
+      ariaLabel={ariaLabel}
+      accentColor={accentColor}
+      isSelected={isSelected}
+      id={id}
+      backgroundColor={backgroundColor}
+      onClick={handleToggle}
+    />
   );
 };
 

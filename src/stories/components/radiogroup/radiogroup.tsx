@@ -12,6 +12,8 @@ interface RadioGroupProps {
   bodyTextSize?: TextSize;
   direction: boolean;
   ariaLabel: string;
+  layoutToggle: boolean;
+  accentColor: string;
 }
 
 const RadioGroup = ({
@@ -23,6 +25,8 @@ const RadioGroup = ({
   bodyTextSize = "md",
   direction = true,
   ariaLabel = "placeholder",
+  layoutToggle = true,
+  accentColor = "red"
 }: RadioGroupProps) => {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -34,7 +38,7 @@ const RadioGroup = ({
     <div
       className={`flex ${
         direction ? "flex-row" : "flex-col"
-      } justify-center space-x-6`}
+      } justify-center gap-3`}
     >
       {Array.from({ length: 3 }, (_, index) => (
         <div key={index} onClick={() => handleClick(index)}>
@@ -48,6 +52,8 @@ const RadioGroup = ({
             bodyTextSize={bodyTextSize}
             ariaLabel={ariaLabel}
             id={"radio" + index}
+            layoutToggle={layoutToggle}
+            accentColor={accentColor}
           />
         </div>
       ))}

@@ -8,16 +8,21 @@ const meta = {
     layout: "centered",
   },
   args: {
+    accentColor: "white",
+    backgroundColor: "transparent",
     headerLabel: "default heading",
     bodyLabel: "default body",
     borderRadius: "md",
-    backgroundColor: "transparent",
     headingTextSize: "xl",
     bodyTextSize: "md",
+    layoutToggle: true,
     direction: true,
     ariaLabel: "Radio Group",
   },
   argTypes: {
+    accentColor: {
+      control: "color",
+    },
     headerLabel: {
       name: "Header Label",
       description: "Controls the header label of the radio group",
@@ -53,6 +58,12 @@ const meta = {
       options: ["xs", "sm", "md", "lg", "xl", "2xl"],
       defaultValue: "md",
     },
+    layoutToggle: {
+      name: "Layout Toggle",
+      description: "Toggles the layout of the radio group",
+      control: { type: "boolean" },
+      defaultValue: true,
+    },
     direction: {
       name: "Direction",
       description: "Controls the direction of the radio group",
@@ -73,12 +84,14 @@ export type Story = StoryObj<typeof RadioGroup>;
 
 export const Primary: Story = {
   args: {
+    accentColor: "white",
     headerLabel: "default heading",
     bodyLabel: "default body",
     borderRadius: "md",
     backgroundColor: "transparent",
     headingTextSize: "xl",
     bodyTextSize: "md",
+    layoutToggle: true,
     direction: true,
     ariaLabel: "Radio Group",
   },
