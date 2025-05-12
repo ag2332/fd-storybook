@@ -15,6 +15,7 @@ interface RadioProps {
   backgroundToggle?: boolean;
   layoutToggle?: boolean;
   accentColor: string;
+  inputStyle?: "checkbox" | "radio";
 }
 
 const Radio = ({
@@ -29,6 +30,7 @@ const Radio = ({
   ariaLabel = "placeholder",
   id = "radio",
   layoutToggle,
+  inputStyle = "radio"
 }: RadioProps) => {
 
   return (
@@ -44,6 +46,7 @@ const Radio = ({
     borderRadius={borderRadius}
     backgroundColor={backgroundColor}
     layoutToggle={layoutToggle}
+    inputStyle={inputStyle}
     />
   );
 };

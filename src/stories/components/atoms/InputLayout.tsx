@@ -19,7 +19,8 @@ interface InputLayoutProps {
   id: string;
   backgroundToggle?: boolean;
   layoutToggle?: boolean;
-  onClick: () => void;
+  inputStyle?: "checkbox" | "radio";
+  onClick?: () => void;
 }
 
 const InputLayout = ({
@@ -34,10 +35,42 @@ const InputLayout = ({
   ariaLabel = "placeholder",
   id = "InputLayout",
   layoutToggle = true,
+  inputStyle = "radio",
   onClick,
 }: InputLayoutProps) => {
   const hasNoBackground =
     backgroundColor === "transparent" || backgroundColor === "";
+
+  const inputStyles = {
+    checkbox: "rounded-sm",
+    radio: "rounded-full",
+  }[inputStyle];
+
+  const checkStyles = {
+    checkbox: (
+      <svg
+        className="w-3 h-3 text-black"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <polyline points="20 6 9 17 4 12" />
+      </svg>
+    ),
+    radio: (
+      <svg
+        className="w-5 h-5 text-blue-500"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="12" cy="12" r="6" />
+      </svg>
+    ),
+  }[inputStyle];
 
   return (
     <span
@@ -60,7 +93,9 @@ const InputLayout = ({
         <h1 className={`${headingTextStyles(headingTextSize)}`}>
           {headerLabel}
         </h1>
-        <p className={`${bodyTextStyles(bodyTextSize)}`}>{bodyLabel}</p>
+        <p className={`${bodyTextStyles(bodyTextSize)}`}>
+          {bodyLabel}
+        </p>
       </label>
       <input
         type="radio"
@@ -70,22 +105,10 @@ const InputLayout = ({
         className="hidden"
       />
       <span
-      style={{ background: isSelected ? accentColor : "" }}
-        className={` w-6 h-6 rounded-full border-2 border-black flex items-center justify-center `}
+        style={{ background: isSelected ? accentColor : "" }}
+        className={`${inputStyles} w-6 h-6 border-2 border-black flex items-center justify-center`}
       >
-        {isSelected && (
-          <svg
-            className="w-3 h-3 text-black"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        )}
+        {isSelected && checkStyles}
       </span>
     </span>
   );

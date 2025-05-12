@@ -47,6 +47,16 @@ const meta = {
       options: ["xs", "sm", "md", "lg", "xl", "2xl"],
       defaultValue: "md",
     },
+    inputStyle: {
+      table: {
+        disable: true,
+      }
+    },
+    onClick: {
+      table: {
+        disable: true,
+      }
+    }
   },
 } satisfies Meta<typeof CheckBox>;
 

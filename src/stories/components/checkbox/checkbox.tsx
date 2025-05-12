@@ -11,7 +11,9 @@ interface CheckBoxProps {
   bodyLabel?: string;
   ariaLabel: string;
   id: string;
+  onClick: () => void;
   backgroundColor: string
+  inputStyle?: "checkbox" | "radio";
 }
 
 const CheckBox = ({
@@ -22,7 +24,9 @@ const CheckBox = ({
   bodyLabel = "default body",
   ariaLabel,
   id,
+  onClick,
   backgroundColor = "transparent",
+  inputStyle = "checkbox",
 }: CheckBoxProps) => {
 
   const [isSelected, setIsSelected] = useState(false);
@@ -43,6 +47,7 @@ const CheckBox = ({
       id={id}
       backgroundColor={backgroundColor}
       onClick={handleToggle}
+      inputStyle={inputStyle}
     />
   );
 };
