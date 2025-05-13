@@ -6,6 +6,9 @@ type ButtonProps = PropsWithChildren<
     ariaLabel: string;
     onClick?: () => void;
     className?: string;
+    children?: React.ReactNode;
+    onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
+    tabIndex?: number;
   }
 >;
 
@@ -15,6 +18,8 @@ const Button = ({
   variant,
   onClick,
   className,
+  onKeyDown,
+  tabIndex
 }: ButtonProps) => {
   return (
       <button
@@ -22,6 +27,8 @@ const Button = ({
         className={`${variants({ variant })} cursor-pointer flex justify-center w-full`}
         onClick={onClick}
         aria-label={ariaLabel}
+        onKeyDown={onKeyDown}
+        tabIndex={tabIndex}
       >
         {children}
       </button>
