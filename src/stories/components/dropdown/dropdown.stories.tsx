@@ -5,11 +5,12 @@ const meta = {
   title: "components/Dropdown",
   component: DropDown,
   parameters: {
-    layout: "centered",
+    layout: "padded",
   },
   args: {
     backgroundColor: "black",
     borderRadius: "md",
+    selectSize: true,
   },
   argTypes: {
     backgroundColor: {
@@ -23,6 +24,11 @@ const meta = {
       options: ["xs", "sm", "md", "lg", "xl"],
       defaultValue: "md",
     },
+    selectSize: {
+      description: "Controls the size of the select box",
+      control: { type: "boolean" },
+      defaultValue: true,
+    }
   },
 } satisfies Meta<typeof DropDown>;
 
