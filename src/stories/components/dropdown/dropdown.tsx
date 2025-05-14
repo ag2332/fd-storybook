@@ -59,6 +59,8 @@ const DropDown = ({
       if (!openDropdown) {
         setOpenDropdown(true);
         setActiveFocusedIndex(0);
+      } else if (openDropdown && activeFocusedIndex === null) {
+        setOpenDropdown(false);
       } else if (activeFocusedIndex !== null) {
         setSelectedIndex(activeFocusedIndex);
         setOpenDropdown(false);
@@ -152,7 +154,7 @@ const DropDown = ({
                   }}
                   onMouseEnter={() => setActiveFocusedIndex(null)}
                   className={`
-                cursor-pointer text-center border border-white/5 p-2 ml-1 text-sm text-white transition outline-none
+                cursor-pointer text-center border border-white/5 p-3 text-sm text-white transition outline-none
                 ${isSelected ? "bg-white/10" : ""}
                 ${isFocused ? "bg-white/30" : ""}
                 hover:bg-white/20 w-full text-left
